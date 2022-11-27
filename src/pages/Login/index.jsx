@@ -2,9 +2,16 @@ import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
+import { useTypewriter } from "react-simple-typewriter";
 
 const Login = ({ setAddress, setIsConnected }) => {
   const { ethereum } = window;
+
+  const [text, count] = useTypewriter({
+    words: ["Hassle Free", "Seamlessly", "Flawlessly"],
+    loop: true,
+    delaySpeed: 2000,
+  });
 
   const nav = useNavigate();
 
@@ -36,9 +43,9 @@ const Login = ({ setAddress, setIsConnected }) => {
       <section className="hero h-screen overflow-hidden">
         <Navbar connectWallet={connectWallet} />
         <div className="flex flex-col items-center justify-center h-screen mx-auto">
-          <p className="font-[800] text-6xl ">Flex your NFT's with</p>
+          <p className="font-[800] text-6xl ">Flex your NFT's</p>
           <p className="font-[800] text-6xl py-5 bg-clip-text text-transparent bg-gradient-to-r from-[#3c81f6] to-[#c13584]">
-            Ab tak suja Nahi hai ye
+            {text}
           </p>
           <p className="text-xl ">Showcase your NFT Collection to the World</p>
           <button
@@ -49,6 +56,7 @@ const Login = ({ setAddress, setIsConnected }) => {
           </button>
         </div>
       </section>
+      <section></section>
     </>
   );
 };
