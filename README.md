@@ -16,6 +16,7 @@
 # Features
 - ***View Owned NFTs on Polygon Chain***
 - ***Search For NFTs based on Wallet Address***
+- ***Access via Metamask***
 - ***Much more to be added***
 
 
