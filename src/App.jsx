@@ -15,25 +15,32 @@ function App() {
       <Toaster />
       {/* Login */}
       {isConnected ? (
-        <Home
-          isConnected={isConnected}
-          setIsConnected={setIsConnected}
-          address={address}
-        />
-      ) : (
         <Routes>
           <Route
             exact
             path="/"
             element={
-              <Login setIsConnected={setIsConnected} setAddress={setAddress} />
+              <Home
+                isConnected={isConnected}
+                setIsConnected={setIsConnected}
+                address={address}
+              />
             }
           />
-          <Route path="/explore" element={<Explore />} />
+          <Route
+            exact
+            path="/explore"
+            element={
+              <Explore
+                isConnected={isConnected}
+                setIsConnected={setIsConnected}
+              />
+            }
+          />
         </Routes>
+      ) : (
+        <Login setIsConnected={setIsConnected} setAddress={setAddress} />
       )}
-      {/* <Login setIsConnected={setIsConnected} /> */}
-      {/* Home */}
     </div>
   );
 }

@@ -1,11 +1,22 @@
 import React from "react";
 import toast from "react-hot-toast";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ connectWallet, isConnected, setIsConnected }) => {
+  const nav = useNavigate();
+
   const handleLogout = () => {
     setIsConnected(false);
     toast.success("Logged out Succesfully");
+  };
+
+  const redirectHome = () => {
+    nav("/");
+  };
+
+  const redirectExplore = () => {
+    nav("/explore");
   };
 
   return (
@@ -14,8 +25,12 @@ const Navbar = ({ connectWallet, isConnected, setIsConnected }) => {
         <img src={logo} className="w-40 py-5" />
         {isConnected && (
           <ol className="flex items-center mt-2">
-            <li className="text-2xl px-10">Home</li>
-            <li className="text-2xl">Explore</li>
+            <li className="text-2xl px-10" onClick={redirectHome}>
+              Home
+            </li>
+            <li className="text-2xl" onClick={redirectExplore}>
+              Explore
+            </li>
           </ol>
         )}
       </div>

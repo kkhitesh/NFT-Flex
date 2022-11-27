@@ -24,7 +24,7 @@ body {
 .card {
   background-color: hsl(216, 50%, 16%);
   width: min(80%,20rem);
-  height: 35rem;
+  height: 38rem;
 }
 
 /* width */

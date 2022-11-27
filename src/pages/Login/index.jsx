@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 
 const Login = ({ setAddress, setIsConnected }) => {
   const { ethereum } = window;
+
+  const nav = useNavigate();
 
   useEffect(() => {
     if (!ethereum) {
@@ -22,6 +25,7 @@ const Login = ({ setAddress, setIsConnected }) => {
       );
       setAddress(accounts[0]);
       setIsConnected(true);
+      nav("/");
     } catch (error) {
       console.log(error);
     }
