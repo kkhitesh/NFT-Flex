@@ -1,7 +1,7 @@
 import React from "react";
 import toast from "react-hot-toast";
 import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = ({ connectWallet, isConnected, setIsConnected }) => {
   const nav = useNavigate();
@@ -11,28 +11,28 @@ const Navbar = ({ connectWallet, isConnected, setIsConnected }) => {
     toast.success("Logged out Succesfully");
   };
 
-  const redirectHome = () => {
-    nav("/");
-  };
-
-  const redirectExplore = () => {
-    nav("/explore");
-  };
-
   return (
     <nav className="flex justify-between mx-10 h-42">
       <div className="flex">
-        <img src={logo} className="w-40 py-5" />
+        <Link to="/">
+          <img src={logo} className="w-40 py-5" />
+        </Link>
         {isConnected && (
           <ol className="flex items-center mt-2">
-            <li className="text-2xl px-10" onClick={redirectHome}>
-              Home
-            </li>
-            <li className="text-2xl" onClick={redirectExplore}>
-              Explore
-            </li>
+            <Link to="/">
+              <li className="text-2xl px-10">Home</li>
+            </Link>
+            <Link to="/explore">
+              <li className="text-2xl">Explore</li>
+            </Link>
           </ol>
         )}
+        <ol className="flex items-center mt-2">
+          <Link to="/coins">
+            <li className="text-2xl px-10">Coins</li>
+          </Link>
+          <li className="text-2xl ">NFTs</li>
+        </ol>
       </div>
       <button
         className="bg-red-600 px-5 py-3 my-5 text-white font-semibold"

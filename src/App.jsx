@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import "./App.css";
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
+import Coins from "./pages/Coins";
 
 function App() {
   const [isConnected, setIsConnected] = useState(false);
@@ -37,9 +38,39 @@ function App() {
               />
             }
           />
+          <Route
+            exact
+            path="/coins"
+            element={
+              <Coins
+                isConnected={isConnected}
+                setAddress={setAddress}
+                setIsConnected={setIsConnected}
+              />
+            }
+          />
         </Routes>
       ) : (
-        <Login setIsConnected={setIsConnected} setAddress={setAddress} />
+        <Routes>
+          <Route
+            exact
+            path="/coins"
+            element={
+              <Coins
+                isConnected={isConnected}
+                setAddress={setAddress}
+                setIsConnected={setIsConnected}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/"
+            element={
+              <Login setAddress={setAddress} setIsConnected={setIsConnected} />
+            }
+          />
+        </Routes>
       )}
     </div>
   );
