@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar";
 const Coins = ({ isConnected, setIsConnected, setAddress }) => {
   const [coins, setCoins] = useState([]);
   const [searchCoin, setSearchCoin] = useState("");
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     axios
@@ -23,6 +24,15 @@ const Coins = ({ isConnected, setIsConnected, setAddress }) => {
 
   const handleChange = (e) => {
     setSearchCoin(e.target.value);
+  };
+
+  const handlePageChange = (selectedPage) => {
+    if (
+      selectedPage >= 1 &&
+      selectedPage <= coins.length / 10 &&
+      page !== selectedPage
+    )
+      setPage(selectedPage);
   };
 
   return (
@@ -49,7 +59,7 @@ const Coins = ({ isConnected, setIsConnected, setAddress }) => {
           🔍 Search
         </button>
       </div>
-      {filteredCoins.map((coin) => {
+      {filteredCoins.slice(page * 10 - 10, page * 10).map((coin) => {
         return (
           <div className="w-2/3 mx-auto rounded-xl border border-slate-600 p-4 mb-5 flex justify-between">
             <div className="flex">
@@ -83,6 +93,37 @@ const Coins = ({ isConnected, setIsConnected, setAddress }) => {
           </div>
         );
       })}
+      <div className="flex justify-center pb-6">
+        <span
+          className={`py-3 px-4 border border-slate-600 cursor-pointer ${
+            page === 1 && "collapse"
+          }`}
+          onClick={() => handlePageChange(page - 1)}
+        >
+          ◀
+        </span>
+        {[...Array(coins.length / 10)].map((_, i) => {
+          return (
+            <span
+              className={`py-3 px-4 border border-slate-600 cursor-pointer ${
+                page === i + 1 && "bg-red-500 text-white"
+              }`}
+              onClick={() => handlePageChange(i + 1)}
+              key={i}
+            >
+              {i + 1}
+            </span>
+          );
+        })}
+        <span
+          className={`py-3 px-4 border border-slate-600 cursor-pointer ${
+            page === coins.length / 10 && "collapse"
+          }`}
+          onClick={() => handlePageChange(page + 1)}
+        >
+          ▶
+        </span>
+      </div>
     </div>
   );
 };
