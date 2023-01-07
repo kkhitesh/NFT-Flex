@@ -106,7 +106,7 @@ const Coins = ({ isConnected, setIsConnected, setAddress }) => {
           return (
             <span
               className={`py-3 px-4 border border-slate-600 cursor-pointer ${
-                page === i + 1 && "bg-red-500 text-white"
+                page === i + 1 && "bg-red -500 text-white"
               }`}
               onClick={() => handlePageChange(i + 1)}
               key={i}

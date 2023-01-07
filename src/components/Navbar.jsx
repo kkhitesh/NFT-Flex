@@ -31,7 +31,9 @@ const Navbar = ({ connectWallet, isConnected, setIsConnected }) => {
           <Link to="/coins">
             <li className="text-2xl px-10">Coins</li>
           </Link>
-          <li className="text-2xl ">NFTs</li>
+          <Link to="/nfts">
+            <li className="text-2xl ">NFTs</li>
+          </Link>
         </ol>
       </div>
       <button

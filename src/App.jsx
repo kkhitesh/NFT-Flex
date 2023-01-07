@@ -6,6 +6,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Coins from "./pages/Coins";
+import NFTs from "./pages/NFTs";
 
 function App() {
   const [isConnected, setIsConnected] = useState(false);
@@ -49,6 +50,17 @@ function App() {
               />
             }
           />
+          <Route
+            exact
+            path="/nfts"
+            element={
+              <NFTs
+                isConnected={isConnected}
+                setAddress={setAddress}
+                setIsConnected={setIsConnected}
+              />
+            }
+          />
         </Routes>
       ) : (
         <Routes>
@@ -57,6 +69,17 @@ function App() {
             path="/coins"
             element={
               <Coins
+                isConnected={isConnected}
+                setAddress={setAddress}
+                setIsConnected={setIsConnected}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/nfts"
+            element={
+              <NFTs
                 isConnected={isConnected}
                 setAddress={setAddress}
                 setIsConnected={setIsConnected}
